@@ -2,30 +2,24 @@ import { connectDB } from "@/lib/mongodb";
 import { Blog } from "@/app/models/blog";
 import ReactMarkdown from "react-markdown";
 import { notFound } from "next/navigation";
-import { BlogType } from "@/lib/types";
 
 export async function generateStaticParams() {
   await connectDB();
   // Fetching only the `_id` field since it's needed for generating static paths
-  const blogs = await Blog.find().select("_id").lean<Pick<BlogType, "_id">[]>();
+  const blogs = await Blog.find().select("_id");
 
   return blogs.map((blog) => ({
     slug: blog._id.toString(),
   }));
 }
 
-export default async function BlogPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+type tParams = Promise<{ slug: string }>;
+
+export default async function BlogPage(props: { params: tParams }) {
   await connectDB();
-
-  // Fetch full blog details
-  const blog = await Blog.findById(params.slug).lean<BlogType | null>();
-
+  const { slug } = await props.params;
+  const blog = await Blog.findById(slug);
   if (!blog) return notFound();
-
   return (
     <article>
       <h1 className="text-3xl font-bold">{blog.title}</h1>

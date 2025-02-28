@@ -1,15 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import { BlogType } from "@/lib/types";
 
 type BlogCardProps = {
-  blog: {
-    _id: string;
-    title: string;
-    author: string;
-    content: string;
-    createdAt?: string;
-  };
+  blog: BlogType
 };
 
 export default function BlogCard({ blog }: BlogCardProps) {
