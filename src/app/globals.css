@@ -3,19 +3,52 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8fafc; /* Light slate */
+  --foreground: #1e293b; /* Dark slate */
+  --primary: #2563eb; /* Blue */
+  --secondary: #64748b; /* Grayish slate */
+  --button-color: rgb(38, 180, 38);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1e293b;
+    --foreground: #f8fafc;
+    --primary: #3b82f6;
+    --secondary: #94a3b8;
   }
+}
+
+.prose h1 {
+  color: white;
+}
+.prose h2 {
+  color: white !important;
+}
+.prose h3 {
+  color: white !important;
+}
+.prose h4 {
+  color: white !important;
+}
+.prose h5 {
+  color: white !important;
+}
+
+.prose p {
+  color: white;
+}
+
+.prose h6 {
+  color: white !important;
+}
+
+.prose strong {
+  color: white !important;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", sans-serif;
 }
